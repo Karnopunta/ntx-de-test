@@ -2,8 +2,10 @@
 1. Data
 - data diambil dari file csv [ecommerce-session-bigquery.csv](ecommerce-session-bigquery.csv)
 - menggunakan chatgpt sebagai asisten untuk meminta bantuan pembuatan code
+
     a. ekstrak data
     ``df = pd.read_csv('ecommerce-session-bigquery.csv')``
+
     b. mengganti nama kolom
     
     Promp yang di kirim ke chatgpt
@@ -39,7 +41,7 @@
     ```
     total_pendapatan_per_hari = df.groupby(['Tanggal', 'nama_produk'])['total_pendapatan'].sum()
 
-    produk_teratas_per_tanggal = total_pendapatan_per_hari.groupby('Tanggal').idxmax().apply(lambda           x:total_pendapatan_per_hari.loc[x])
+    produk_teratas_per_tanggal = total_pendapatan_per_hari.groupby('Tanggal').idxmax().apply(lambda  x:total_pendapatan_per_hari.loc[x])
     ```
     untuk melihat hasil perbaikan lengkapnya klik disini [analyst.py](analyst.py)
     jalankan file ini [analyst.py](analyst.py) untuk melihat hasilnya
