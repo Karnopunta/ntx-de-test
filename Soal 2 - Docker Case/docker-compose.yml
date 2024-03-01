@@ -1,0 +1,19 @@
+version: "3"  # Menggunakan Docker Compose versi 3
+
+services:     # Layanan-layanan yang akan dijalankan dalam lingkungan Docker.
+  api:        # Layanan pertama yang dijalankan
+    build: ./api # Membangun kontainer API
+    ports:
+      - "6000:6000"   # Port host : port kontainer yang digunakan
+    networks:
+      - etl_api_network # Jaringan yang akan digunakan oleh layanan-layanan
+
+  etl:        # Layanan kedua yang dijalankan
+    build: ./etl   # Membangun kontainer ETL
+    networks:
+      - etl_api_network # Jaringan yang akan digunakan oleh layanan-layanan
+
+networks:
+  etl_api_network:
+    driver: bridge   # Menggunakan driver bridge untuk menghubungkan kedua layanan dalam satu jaringan
+                     # Jaringan ini digunakan untuk memungkinkan komunikasi antara layanan API dan layanan ETL
